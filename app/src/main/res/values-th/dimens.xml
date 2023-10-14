@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_layout">15dp</dimen>
+    <dimen name="layout_top_header">50dp</dimen>
+    <dimen name="layout_bottom_btn">30dp</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BMI_G07</string>
+    <string name="bmi">BMI Calculator</string>
+    <string name="kg">Weight (kg)</string>
+    <string name="cm">Height (cm)</string>
+    <string name="criteria">BMI range</string>
+    <string name="result">Calculate</string>
+    <string name="empty_msg"> </string>
+</resources>

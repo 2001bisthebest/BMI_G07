@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BMI_G07</string>
+    <string name="bmi">ค่าดัชนีมวลกาย</string>
+    <string name="kg">น้ำหนัก (กิโลกรัม)</string>
+    <string name="cm">ส่วนสูง (เซนติเมตร)</string>
+    <string name="criteria">อยู่่ในเกณฑ์</string>
+    <string name="result">คำนวณ</string>
+    <string name="empty_msg"> </string>
+</resources>

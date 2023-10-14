@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="result_bmi">
+        <item>น้ำหนักน้อย / ผอม</item>
+        <item>ปกติ (สุขภาพดี)</item>
+        <item>ท้วม / โรคอ้วนระดับ 1</item>
+        <item>อ้วน / โรคอ้วนระดับ 2</item>
+        <item>อ้วนมาก / โรคอ้วนระดับ 3</item>
+    </array>
+</resources>
