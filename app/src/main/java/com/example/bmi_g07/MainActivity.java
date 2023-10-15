@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
         final EditText height = findViewById(R.id.editTextNumberDecimal2);
         final Button calculate_btn = findViewById(R.id.button);
 
-        int color_nude = getResources().getColor(R.color.nude);
+
         int color_green = getResources().getColor(R.color.green);
         int color_yellow = getResources().getColor(R.color.yellow);
-        int color_orange = getResources().getColor(R.color.orange);
+        int color_lightred = getResources().getColor(R.color.lightred);
         int color_red = getResources().getColor(R.color.red);
+        int color_darkred = getResources().getColor(R.color.darkred);
+
 
         weight.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(8, 2)});
 
@@ -56,21 +58,30 @@ public class MainActivity extends AppCompatActivity {
                     readyNumber = weight_str / (height_str * height_str / 10000);
                 }
                 output.setText(df.format(readyNumber )+ "");
-                if(readyNumber < 18.5){
+                if(readyNumber < 16){
                     output2.setText(arr[0]);
-                    output2.setBackgroundColor(color_nude);
-                } else if (readyNumber >= 18.5 && readyNumber <= 22.99) {
+                    output2.setBackgroundColor(color_red);
+                } else if (readyNumber >= 16 && readyNumber < 17) {
                     output2.setText(arr[1]);
-                    output2.setBackgroundColor(color_green);
-                }else if (readyNumber >= 23.0 && readyNumber <= 24.99) {
+                    output2.setBackgroundColor(color_lightred);
+                }else if (readyNumber >= 17 && readyNumber < 18.5) {
                     output2.setText(arr[2]);
                     output2.setBackgroundColor(color_yellow);
-                }else if (readyNumber >= 25.0 && readyNumber <= 29.99) {
+                }else if (readyNumber >= 18.5 && readyNumber < 25) {
                     output2.setText(arr[3]);
-                    output2.setBackgroundColor(color_orange);
-                }else {
+                    output2.setBackgroundColor(color_green);
+                }else if (readyNumber >= 25 && readyNumber < 30) {
                     output2.setText(arr[4]);
+                    output2.setBackgroundColor(color_yellow);
+                }else if (readyNumber >= 30 && readyNumber < 35) {
+                    output2.setText(arr[5]);
+                    output2.setBackgroundColor(color_lightred);
+                }else if (readyNumber >= 35 && readyNumber < 40) {
+                    output2.setText(arr[6]);
                     output2.setBackgroundColor(color_red);
+                }else {
+                    output2.setText(arr[7]);
+                    output2.setBackgroundColor(color_darkred);
                 }
             }
         });

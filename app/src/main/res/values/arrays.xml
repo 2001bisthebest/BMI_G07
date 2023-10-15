@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="result_bmi">
-        <item>Low weight / thin</item>
-        <item>Normal (healthy)</item>
-        <item>Chubby / Obesity Level 1</item>
-        <item>Fat / Obesity Level 2</item>
-        <item>Very fat / obesity level 3</item>
+        <item>Severe Thinness</item>
+        <item>Moderate Thinness</item>
+        <item>Mild Thinness</item>
+        <item>Normal</item>
+        <item>Overweight</item>
+        <item>Obese Class I</item>
+        <item>Obese Class II</item>
+        <item>Obese Class III</item>
     </array>
 </resources>
