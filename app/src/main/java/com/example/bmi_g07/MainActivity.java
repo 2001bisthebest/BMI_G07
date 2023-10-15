@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         weight.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(8, 2)});
+        height.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(8, 2)});
 
         calculate_btn.setOnClickListener(new View.OnClickListener() {
             @Override
