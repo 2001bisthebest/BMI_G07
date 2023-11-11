@@ -19,9 +19,9 @@ public class EventsData extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ("
                 + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATE + "INTEGER, "
-                + WEIGHT + " INTEGER, "
-                + BMI + "INTEGER, "
-                + CRITERIA + " TEXT NOT NULL);"  );
+                + WEIGHT + " TEXT, "
+                + BMI + "TEXT, "
+                + CRITERIA + " TEXT );"  );
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){

@@ -25,12 +25,12 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 //        events = new EventsData(ListActivity.this);
-        try {
-            Cursor cursor = getEvents();
-            showEvents(cursor);
-        }finally {
-            events.close();
-        }
+//        try {
+//            Cursor cursor = getEvents();
+//            showEvents(cursor);
+//        }finally {
+//            events.close();
+//        }
     }
     private void showEvents(Cursor cursor) {
         final ListView listView = (ListView)findViewById(R.id.listView);

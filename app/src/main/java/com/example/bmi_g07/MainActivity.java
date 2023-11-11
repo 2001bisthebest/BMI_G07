@@ -100,18 +100,37 @@ public class MainActivity extends AppCompatActivity {
                     output2.setText(arr[7]);
                     output2.setBackgroundColor(color_darkred);
                 }
-//                String string1 = String.format("%1$s", output2.getText());
-//                SQLiteDatabase db = events.getWritableDatabase();
-//                ContentValues values = new ContentValues();
-//                values.put(DATE, System.currentTimeMillis());
-//                values.put(WEIGHT, weight_str);
-//                values.put(BMI, output.toString());
-//                values.put(CRITERIA, string1);
-//                db.insert(TABLE_NAME, null, values);
+//                String output_str = output.getText();
+//                try {
+//                    addData(output, output2, weight_str);
+//                } finally{
+//                    events.close();
+//                }
+                if(output != null && output2 != null && weight_str > 0.0){
+                    addData(output, output2, weight_str);
+                }
+
             }
         });
 
-
+    }
+    public void addData(TextView output, TextView output2, double weight){
+//        String output_str = String.format("%1$s", output.getText());
+//        String output2_str = String.format("%2$s", output.getText());
+//        String weight_str = String.format("%3$s", weight + "");
+        String output_str = output.getText().toString();
+        String output2_str = output2.getText().toString();
+        String weight_str = weight + "";
+//        System.out.print(output_str);
+//        if(output_str != null && output_str != null && weight_str != null){
+            SQLiteDatabase db = events.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(DATE, System.currentTimeMillis());
+            values.put(WEIGHT, weight_str);
+            values.put(BMI, output_str);
+            values.put(CRITERIA, output2_str);
+            db.insert(TABLE_NAME, null, values);
+//        }
 
     }
     @Override
