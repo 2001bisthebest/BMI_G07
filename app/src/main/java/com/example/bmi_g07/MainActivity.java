@@ -26,8 +26,11 @@ import static com.example.bmi_g07.Constants.WEIGHT;
 import static com.example.bmi_g07.Constants.BMI;
 import static com.example.bmi_g07.Constants.CRITERIA;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         calculate_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                events = new EventsData(MainActivity.this);
                 double readyNumber = 0.0;
                 double weight_str = 0.0;
                 double height_str = 0.0;
@@ -100,16 +104,11 @@ public class MainActivity extends AppCompatActivity {
                     output2.setText(arr[7]);
                     output2.setBackgroundColor(color_darkred);
                 }
-//                String output_str = output.getText();
-//                try {
-//                    addData(output, output2, weight_str);
-//                } finally{
-//                    events.close();
-//                }
-                if(output != null && output2 != null && weight_str > 0.0){
+                try {
                     addData(output, output2, weight_str);
+                } finally{
+                    events.close();
                 }
-
             }
         });
 
@@ -118,20 +117,18 @@ public class MainActivity extends AppCompatActivity {
 //        String output_str = String.format("%1$s", output.getText());
 //        String output2_str = String.format("%2$s", output.getText());
 //        String weight_str = String.format("%3$s", weight + "");
+        Date date = new Date(System.currentTimeMillis());
+        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         String output_str = output.getText().toString();
         String output2_str = output2.getText().toString();
         String weight_str = weight + "";
-//        System.out.print(output_str);
-//        if(output_str != null && output_str != null && weight_str != null){
-            SQLiteDatabase db = events.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(DATE, System.currentTimeMillis());
-            values.put(WEIGHT, weight_str);
-            values.put(BMI, output_str);
-            values.put(CRITERIA, output2_str);
-            db.insert(TABLE_NAME, null, values);
-//        }
-
+        SQLiteDatabase db = events.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DATE, dateFormat.format(date));
+        values.put(WEIGHT, weight_str);
+        values.put(BMI, output_str);
+        values.put(CRITERIA, output2_str);
+        db.insert(TABLE_NAME, null, values);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,9 +144,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
 class DecimalDigitsInputFilter implements InputFilter {
     private Pattern mPattern;

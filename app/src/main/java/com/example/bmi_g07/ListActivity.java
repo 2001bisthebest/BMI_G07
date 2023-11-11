@@ -24,7 +24,7 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-//        events = new EventsData(ListActivity.this);
+        events = new EventsData(ListActivity.this);
 //        try {
 //            Cursor cursor = getEvents();
 //            showEvents(cursor);
@@ -38,10 +38,10 @@ public class ListActivity extends AppCompatActivity {
         HashMap<String, String> map;
         while(cursor.moveToNext()) {
             map = new HashMap<String, String>();
-            map.put("date", String.valueOf(cursor.getLong(0)));
-            map.put("weight", String.valueOf(cursor.getLong(1)));
-            map.put("bmi", String.valueOf(cursor.getLong(2)));
-            map.put("criteria", cursor.getString(3));
+            map.put("date", String.valueOf(cursor.getLong(1)));
+            map.put("weight", cursor.getString(2));
+            map.put("bmi", cursor.getString(3));
+            map.put("criteria", cursor.getString(4));
             MyArrList.add(map);
         }
         SimpleAdapter simpleAdapter = new SimpleAdapter(ListActivity.this, MyArrList, R.layout.activity_column, new String[]{"date", "weight", "bmi", "criteria"}, new int[]{R.id.col_date, R.id.col_weight, R.id.col_bmi, R.id.col_criteria});

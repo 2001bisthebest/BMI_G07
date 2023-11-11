@@ -17,7 +17,7 @@ public class EventsData extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ("
-                + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + _ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATE + "INTEGER, "
                 + WEIGHT + " TEXT, "
                 + BMI + "TEXT, "
