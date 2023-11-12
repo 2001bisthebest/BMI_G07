@@ -6,4 +6,10 @@
     <string name="criteria">BMI range</string>
     <string name="result">Calculate</string>
     <string name="empty_msg"> </string>
+    <string name="col_date">Date</string>
+    <string name="col_weight">Weight</string>
+    <string name="col_bmi">BMI</string>
+    <string name="col_criteria">BMI range</string>
+    <string name="history_bmi">BMI History</string>
+    <string name="view_record">view record</string>
 </resources>

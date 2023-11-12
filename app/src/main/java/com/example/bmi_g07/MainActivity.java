@@ -2,22 +2,45 @@ package com.example.bmi_g07;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import static android.provider.BaseColumns._ID;
+import static com.example.bmi_g07.Constants.TABLE_NAME;
+import static com.example.bmi_g07.Constants.DATE;
+import static com.example.bmi_g07.Constants.WEIGHT;
+import static com.example.bmi_g07.Constants.BMI;
+import static com.example.bmi_g07.Constants.CRITERIA;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-
+    private EventsData events;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         calculate_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                events = new EventsData(MainActivity.this);
                 double readyNumber = 0.0;
                 double weight_str = 0.0;
                 double height_str = 0.0;
@@ -84,11 +108,47 @@ public class MainActivity extends AppCompatActivity {
                     output2.setText(arr[7]);
                     output2.setBackgroundColor(color_darkred);
                 }
+                try {
+                    addData(output, output2, weight_str);
+                } finally{
+                    events.close();
+                }
             }
         });
+
     }
-
-
+    public void addData(TextView output, TextView output2, double weight){
+        try{
+            Date date = new Date(System.currentTimeMillis());
+            DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+            String output_str = output.getText().toString();
+            String output2_str = output2.getText().toString();
+            String weight_str = weight + "";
+            SQLiteDatabase db = events.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(DATE, dateFormat.format(date));
+            values.put(WEIGHT, weight_str);
+            values.put(BMI, output_str);
+            values.put(CRITERIA, output2_str);
+            db.insert(TABLE_NAME, null, values);
+        }catch (Exception e) {
+            Log.e("Add Error", e.getMessage());
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.view_record) {
+            startActivity(new Intent(this, ListActivity.class));
+            return false;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 class DecimalDigitsInputFilter implements InputFilter {
     private Pattern mPattern;
