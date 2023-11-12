@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +28,8 @@ import static com.example.bmi_g07.Constants.WEIGHT;
 import static com.example.bmi_g07.Constants.BMI;
 import static com.example.bmi_g07.Constants.CRITERIA;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -114,18 +118,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void addData(TextView output, TextView output2, double weight){
-        Date date = new Date(System.currentTimeMillis());
-        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-        String output_str = output.getText().toString();
-        String output2_str = output2.getText().toString();
-        String weight_str = weight + "";
-        SQLiteDatabase db = events.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DATE, dateFormat.format(date));
-//        values.put(WEIGHT, weight_str);
-//        values.put(BMI, output_str);
-//        values.put(CRITERIA, output2_str);
-        db.insert(TABLE_NAME, null, values);
+        try{
+            Date date = new Date(System.currentTimeMillis());
+            DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+            String output_str = output.getText().toString();
+            String output2_str = output2.getText().toString();
+            String weight_str = weight + "";
+            SQLiteDatabase db = events.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(DATE, dateFormat.format(date));
+            values.put(WEIGHT, weight_str);
+            values.put(BMI, output_str);
+            values.put(CRITERIA, output2_str);
+            db.insert(TABLE_NAME, null, values);
+        }catch (Exception e) {
+            Log.e("Add Error", e.getMessage());
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

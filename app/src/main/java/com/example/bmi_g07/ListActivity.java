@@ -25,12 +25,12 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         events = new EventsData(ListActivity.this);
-//        try {
-//            Cursor cursor = getEvents();
-//            showEvents(cursor);
-//        }finally {
-//            events.close();
-//        }
+        try {
+            Cursor cursor = getEvents();
+            showEvents(cursor);
+        }finally {
+            events.close();
+        }
     }
     private void showEvents(Cursor cursor) {
         final ListView listView = (ListView)findViewById(R.id.listView);
@@ -38,7 +38,7 @@ public class ListActivity extends AppCompatActivity {
         HashMap<String, String> map;
         while(cursor.moveToNext()) {
             map = new HashMap<String, String>();
-            map.put("date", String.valueOf(cursor.getLong(1)));
+            map.put("date", cursor.getString(1));
             map.put("weight", cursor.getString(2));
             map.put("bmi", cursor.getString(3));
             map.put("criteria", cursor.getString(4));

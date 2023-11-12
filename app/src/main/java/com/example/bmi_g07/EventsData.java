@@ -17,12 +17,13 @@ public class EventsData extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ("
-                + _ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DATE + "TEXT );" );
+                + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DATE + " TEXT NOT NULL, "
+                + WEIGHT + " TEXT NOT NULL, "
+                + BMI + " TEXT NOT NULL, "
+                + CRITERIA + " TEXT NOT NULL);");
     }
-//    + WEIGHT + " TEXT, "
-//            + BMI + "TEXT, "
-//            + CRITERIA + " TEXT );"
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS BMI_History");
