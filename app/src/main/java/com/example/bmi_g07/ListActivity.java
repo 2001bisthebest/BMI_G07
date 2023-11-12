@@ -50,7 +50,7 @@ public class ListActivity extends AppCompatActivity {
 
     private Cursor getEvents() {
         String[] FROM = {_ID, DATE, WEIGHT, BMI, CRITERIA};
-        String ORDER_BY = DATE + " DESC";
+        String ORDER_BY = _ID + " DESC";
         SQLiteDatabase db = events.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, FROM, null, null, null, null, ORDER_BY);
         return cursor;
