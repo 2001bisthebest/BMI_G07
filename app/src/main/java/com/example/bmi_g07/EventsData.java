@@ -12,20 +12,20 @@ import static com.example.bmi_g07.Constants.CRITERIA;
 
 public class EventsData extends SQLiteOpenHelper {
     public EventsData(Context ctx){
-        super(ctx, "events.db", null, 1);
+        super(ctx, "BMI_History.db", null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " ("
                 + _ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DATE + "INTEGER, "
-                + WEIGHT + " TEXT, "
-                + BMI + "TEXT, "
-                + CRITERIA + " TEXT );"  );
+                + DATE + "TEXT );" );
     }
+//    + WEIGHT + " TEXT, "
+//            + BMI + "TEXT, "
+//            + CRITERIA + " TEXT );"
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS events");
+        db.execSQL("DROP TABLE IF EXISTS BMI_History");
         onCreate(db);
     }
 }

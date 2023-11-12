@@ -114,9 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void addData(TextView output, TextView output2, double weight){
-//        String output_str = String.format("%1$s", output.getText());
-//        String output2_str = String.format("%2$s", output.getText());
-//        String weight_str = String.format("%3$s", weight + "");
         Date date = new Date(System.currentTimeMillis());
         DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         String output_str = output.getText().toString();
@@ -125,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = events.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DATE, dateFormat.format(date));
-        values.put(WEIGHT, weight_str);
-        values.put(BMI, output_str);
-        values.put(CRITERIA, output2_str);
+//        values.put(WEIGHT, weight_str);
+//        values.put(BMI, output_str);
+//        values.put(CRITERIA, output2_str);
         db.insert(TABLE_NAME, null, values);
     }
     @Override
